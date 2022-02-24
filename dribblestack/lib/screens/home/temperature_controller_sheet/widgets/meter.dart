@@ -102,6 +102,13 @@ class _MeterState extends State<Meter> {
                   ),
                 ),
               ),
+              Positioned(
+                  top: 5.toHeight,
+                  child: Icon(
+                    Icons.arrow_drop_up_rounded,
+                    size: 45.toHeight,
+                    color: Theme.of(context).colorScheme.primary,
+                  ))
             ],
           )
         ])
