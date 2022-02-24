@@ -1,5 +1,7 @@
 import 'package:dribblestack/common_widgets/glass_morphic_container.dart';
 import 'package:dribblestack/screens/home/index.dart';
+import 'package:dribblestack/utils/constants/text_constants.dart'
+    as textCconstants;
 import 'package:dribblestack/services/responsive_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,7 @@ class TemperatureCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Home\nTemperature',
+              textCconstants.homeTemperature,
               style: TextStyle(
                   color: isActive
                       ? Theme.of(context).colorScheme.primary

@@ -1,5 +1,6 @@
 import 'dart:ui';
-
+import 'package:dribblestack/utils/constants/text_constants.dart'
+    as textCconstants;
 import 'package:dribblestack/common_widgets/glass_morphic_container.dart';
 import 'package:dribblestack/screens/home/index.dart';
 import 'package:dribblestack/services/responsive_service.dart';
@@ -33,7 +34,7 @@ class SmartTvCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Smart Tv',
+                    textCconstants.smartTv,
                     style: TextStyle(
                         color: isActive
                             ? Theme.of(context).colorScheme.primary

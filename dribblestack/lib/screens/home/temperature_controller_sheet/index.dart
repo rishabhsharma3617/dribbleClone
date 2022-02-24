@@ -1,4 +1,6 @@
 import 'package:dribblestack/screens/home/index.dart';
+import 'package:dribblestack/utils/constants/text_constants.dart'
+    as textCconstants;
 import 'package:dribblestack/screens/home/temperature_controller_sheet/widgets/current_temperature_tile.dart';
 import 'package:dribblestack/screens/home/temperature_controller_sheet/widgets/meter.dart';
 import 'package:dribblestack/screens/home/temperature_controller_sheet/widgets/option_card1.dart';
@@ -8,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
 class TempertaureControllerSheet extends StatelessWidget {
-  bool isTempertaureCardActive;
-  Function toggleActiveStatus;
+  final bool isTempertaureCardActive;
+  final Function toggleActiveStatus;
   TempertaureControllerSheet(
       {Key? key,
       required this.isTempertaureCardActive,
@@ -67,7 +69,7 @@ class TempertaureControllerSheet extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                'Living Room',
+                                textCconstants.livingroom,
                                 style: TextStyle(
                                     color:
                                         Theme.of(context).colorScheme.primary,
@@ -78,7 +80,7 @@ class TempertaureControllerSheet extends StatelessWidget {
                                 height: 1.toHeight,
                               ),
                               Text(
-                                'Home Temperature',
+                                textCconstants.homeTemperature,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.grey,
@@ -93,7 +95,7 @@ class TempertaureControllerSheet extends StatelessWidget {
                             width: 48.toWidth,
                             activeColor:
                                 Theme.of(context).colorScheme.primaryVariant,
-                            inactiveColor: Colors.white.withOpacity(0.3),
+                            inactiveColor: Colors.grey.withOpacity(0.5),
                             padding: 1.2.toWidth,
                             onToggle: (newActiveStatus) => toggleActiveStatus(
                                 ApplianceService.temperatureControllerService,
@@ -117,21 +119,23 @@ class TempertaureControllerSheet extends StatelessWidget {
                           Expanded(
                               flex: 1,
                               child: TemperatureStatusCard(
-                                  labelText: 'Heating', temperature: 20)),
+                                  labelText: textCconstants.heating,
+                                  temperature: 20)),
                           SizedBox(
                             width: 8.toHeight,
                           ),
                           Expanded(
                               flex: 1,
                               child: TemperatureStatusCard(
-                                  labelText: 'Cooling', temperature: 20)),
+                                  labelText: textCconstants.heating,
+                                  temperature: 20)),
                           SizedBox(
                             width: 8.toHeight,
                           ),
                           Expanded(
                               flex: 1,
                               child: TemperatureStatusCard(
-                                labelText: 'Airwave',
+                                labelText: textCconstants.airwave,
                                 temperature: 20,
                                 showColoredDot: false,
                               )),

@@ -1,5 +1,6 @@
 import 'dart:math';
-
+import 'package:dribblestack/utils/constants/text_constants.dart'
+    as textCconstants;
 import 'package:dribblestack/services/responsive_service.dart';
 import 'package:dribblestack/utils/extensions/hex.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class ElectricityUsageCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Electricity Usage',
+                textCconstants.electricityUsageCardHeading,
                 style: TextStyle(color: Colors.white, fontSize: 17.toFont),
               ),
               Icon(
@@ -56,7 +57,6 @@ class ElectricityUsageCard extends StatelessWidget {
 
     List<Widget> bars = [];
     for (int i = 0; i < electricityUnitsConsumed.length; i++) {
-      print((electricityUnitsConsumed[i]));
       bars.add(Container(
         width: 5.toWidth,
         height:

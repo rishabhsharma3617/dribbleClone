@@ -1,5 +1,7 @@
 import 'package:dribblestack/common_widgets/glass_morphic_container.dart';
 import 'package:dribblestack/services/responsive_service.dart';
+import 'package:dribblestack/utils/constants/text_constants.dart'
+    as textCconstants;
 import 'package:flutter/material.dart';
 
 class GreetingsHeader extends StatelessWidget {
@@ -18,7 +20,7 @@ class GreetingsHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Good Morning',
+                textCconstants.wishingText,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.toFont,

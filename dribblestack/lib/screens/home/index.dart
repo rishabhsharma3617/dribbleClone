@@ -42,7 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       switch (applianceService) {
         case ApplianceService.temperatureControllerService:
-          isTemperatureCardActive = newActiveStatus;
+          {
+            print(applianceService);
+            isTemperatureCardActive = newActiveStatus;
+          }
+
           break;
         case ApplianceService.plugWallService:
           isPlugWallActive = newActiveStatus;
@@ -103,8 +107,16 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       currentSongIndex = newIndex;
     });
-    assetsAudioPlayer.stop();
-    assetsAudioPlayer.open(audios[currentSongIndex]);
+
+    if (currentPlayingStatus == SongPlayingStatus.playing) {
+      print('x');
+      assetsAudioPlayer.open(audios[currentSongIndex]);
+    } else if (currentPlayingStatus == SongPlayingStatus.paused) {
+      assetsAudioPlayer.stop();
+      setState(() {
+        currentPlayingStatus = SongPlayingStatus.notStarted;
+      });
+    }
   }
 
   startSongCallback() {

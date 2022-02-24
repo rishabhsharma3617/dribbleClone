@@ -1,6 +1,8 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:dribblestack/common_widgets/glass_morphic_container.dart';
 import 'package:dribblestack/screens/home/index.dart';
+import 'package:dribblestack/utils/constants/text_constants.dart'
+    as textCconstants;
 import 'package:dribblestack/screens/home/middle/widgets/music_player_card.dart';
 import 'package:dribblestack/screens/home/middle/widgets/plug_card.dart';
 import 'package:dribblestack/screens/home/middle/widgets/smart_tv_card.dart';
@@ -41,7 +43,7 @@ class MiddleOptionsHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Living Room',
+          textCconstants.livingroom,
           style: TextStyle(
               color: Colors.white,
               fontSize: 16.toFont,
