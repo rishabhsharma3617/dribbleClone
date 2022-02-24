@@ -1,5 +1,6 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:dribblestack/common_widgets/glass_morphic_container.dart';
+import 'package:dribblestack/screens/home/index.dart';
 import 'package:dribblestack/screens/home/middle/widgets/music_player_card.dart';
 import 'package:dribblestack/screens/home/middle/widgets/plug_card.dart';
 import 'package:dribblestack/screens/home/middle/widgets/smart_tv_card.dart';
@@ -12,15 +13,25 @@ class MiddleOptionsHeader extends StatelessWidget {
   final bool isTemperatureCardActive;
   final bool isPlugWallActive;
   final bool isSmartTvCardActive;
+  final int currentSongIndex;
   final Function toggleServiceStatus;
+  final SongPlayingStatus audioPlayingStatus;
   final Audio currentSong;
+  final Function startPlayerCallback;
+  final Function changePlayingStatusCallback;
+  final Function changeSongCallback;
   const MiddleOptionsHeader(
       {Key? key,
       required this.isTemperatureCardActive,
       required this.isPlugWallActive,
       required this.isSmartTvCardActive,
       required this.toggleServiceStatus,
-      required this.currentSong})
+      required this.audioPlayingStatus,
+      required this.currentSong,
+      required this.startPlayerCallback,
+      required this.currentSongIndex,
+      required this.changePlayingStatusCallback,
+      required this.changeSongCallback})
       : super(key: key);
 
   @override
@@ -82,6 +93,11 @@ class MiddleOptionsHeader extends StatelessWidget {
             Flexible(
               child: MusicPlayerCard(
                 song: currentSong,
+                audioPlayingStatus: audioPlayingStatus,
+                changeSong: changeSongCallback,
+                startPlayerCallback: startPlayerCallback,
+                currentSongIndex: currentSongIndex,
+                changePlayingStatus: changePlayingStatusCallback,
               ),
             ),
             SizedBox(

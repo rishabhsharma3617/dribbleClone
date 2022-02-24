@@ -1,11 +1,26 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:dribblestack/common_widgets/glass_morphic_container.dart';
+import 'package:dribblestack/screens/home/index.dart';
 import 'package:dribblestack/services/responsive_service.dart';
 import 'package:flutter/material.dart';
 
 class MusicPlayerCard extends StatelessWidget {
-  Audio song;
-  MusicPlayerCard({Key? key, required this.song}) : super(key: key);
+  final Audio song;
+  final SongPlayingStatus audioPlayingStatus;
+  final Function changeSong;
+  final int currentSongIndex;
+  final Function startPlayerCallback;
+  final Function changePlayingStatus;
+
+  MusicPlayerCard(
+      {Key? key,
+      required this.song,
+      required this.audioPlayingStatus,
+      required this.changeSong,
+      required this.currentSongIndex,
+      required this.changePlayingStatus,
+      required this.startPlayerCallback})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +41,7 @@ class MusicPlayerCard extends StatelessWidget {
                   child: Image(
                     height: 38.toHeight,
                     width: 38.toWidth,
-                    image: AssetImage('assets/images/hero_thmb.jpg'),
+                    image: AssetImage(song.metas.image!.path),
                   ),
                 ),
                 SizedBox(
@@ -60,10 +75,13 @@ class MusicPlayerCard extends StatelessWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      Icons.skip_previous,
-                      size: 23.toHeight,
-                      color: Colors.white,
+                    InkWell(
+                      onTap: () => {changeSong(currentSongIndex == 1 ? 0 : 1)},
+                      child: Icon(
+                        Icons.skip_previous,
+                        size: 23.toHeight,
+                        color: Colors.white,
+                      ),
                     ),
                     Container(
                       height: 38.toHeight,
@@ -73,18 +91,41 @@ class MusicPlayerCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15.5.toHeight)),
                       child: Center(
                         child: InkWell(
+                          onTap: () {
+                            //
+                            if (audioPlayingStatus ==
+                                SongPlayingStatus.notStarted) {
+                              //
+                              startPlayerCallback();
+                            } else if (audioPlayingStatus ==
+                                SongPlayingStatus.playing) {
+                              //
+                              changePlayingStatus(SongPlayingStatus.paused);
+                            } else if (audioPlayingStatus ==
+                                SongPlayingStatus.paused) {
+                              changePlayingStatus(SongPlayingStatus.playing);
+                              //
+                            }
+                          },
                           child: Icon(
-                            Icons.pause,
+                            (audioPlayingStatus == SongPlayingStatus.paused ||
+                                    audioPlayingStatus ==
+                                        SongPlayingStatus.notStarted)
+                                ? Icons.play_arrow
+                                : Icons.pause,
                             size: 26.toHeight,
                             color: Colors.white,
                           ),
                         ),
                       ),
                     ),
-                    Icon(
-                      Icons.skip_next,
-                      size: 23.toHeight,
-                      color: Colors.white,
+                    InkWell(
+                      onTap: () => changeSong(currentSongIndex == 0 ? 1 : 0),
+                      child: Icon(
+                        Icons.skip_next,
+                        size: 23.toHeight,
+                        color: Colors.white,
+                      ),
                     )
                   ]),
             )

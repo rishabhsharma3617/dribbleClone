@@ -23,15 +23,18 @@ enum ApplianceService {
 }
 
 enum UserAudioInteractions { playNext, playPrev, pause }
+enum SongPlayingStatus { notStarted, playing, paused }
 
 class _HomeScreenState extends State<HomeScreen> {
   //USING STATE LOCALLY
   //@@@@ Local state to store current activation status of a particular appliance--
-  late AssetsAudioPlayer _assetsAudioPlayer;
+
   bool isTemperatureCardActive = true;
   bool isPlugWallActive = false;
   bool isSmartTvCardActive = false;
   int currentSongIndex = 0;
+  SongPlayingStatus currentPlayingStatus = SongPlayingStatus.notStarted;
+  final assetsAudioPlayer = AssetsAudioPlayer();
 
   //@@@ Local function to change the active state of the appliance service
   toggleApplianceServiceStatus(
@@ -90,36 +93,47 @@ class _HomeScreenState extends State<HomeScreen> {
         artist: 'Enrique Igleasis',
         album: '',
         image: MetasImage(
-            path: 'assets/images/hero_thmb.jpeg', type: ImageType.asset),
+            path: 'assets/images/hero_thmb.jpg', type: ImageType.asset),
       ),
     )
   ];
 
-  ///////
+  ///@@@ Function to change the song
   changeSongIndex(int newIndex) {
-    //
-    currentSongIndex = newIndex;
+    setState(() {
+      currentSongIndex = newIndex;
+    });
+    assetsAudioPlayer.stop();
+    assetsAudioPlayer.open(audios[currentSongIndex]);
   }
 
-  ///////
-  void openPlayer() async {
-    await _assetsAudioPlayer.open(
-      Playlist(audios: audios, startIndex: 0),
-      showNotification: false,
-      autoStart: false,
-    );
+  startSongCallback() {
+    assetsAudioPlayer.open(audios[currentSongIndex]);
+    setState(() {
+      currentPlayingStatus = SongPlayingStatus.playing;
+    });
+  }
+
+  ///@@@ Function to change the playing status of the song
+  changeAudioPlayingstatus(SongPlayingStatus newStatus) {
+    print(newStatus);
+    setState(() {
+      currentPlayingStatus = newStatus;
+    });
+    if (newStatus == SongPlayingStatus.paused)
+      assetsAudioPlayer.pause();
+    else
+      assetsAudioPlayer.play();
   }
 
   @override
   void initState() {
-    _assetsAudioPlayer = AssetsAudioPlayer.newPlayer();
     super.initState();
     seedUnitsConsumedData();
   }
 
   @override
   void dispose() {
-    _assetsAudioPlayer.dispose();
     super.dispose();
   }
 
@@ -158,6 +172,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     isSmartTvCardActive: isSmartTvCardActive,
                     toggleServiceStatus: toggleApplianceServiceStatus,
                     currentSong: audios[currentSongIndex],
+                    audioPlayingStatus: currentPlayingStatus,
+                    currentSongIndex: currentSongIndex,
+                    startPlayerCallback: startSongCallback,
+                    changeSongCallback: changeSongIndex,
+                    changePlayingStatusCallback: changeAudioPlayingstatus,
                   ),
                   SizedBox(
                     height: 27.toHeight,
