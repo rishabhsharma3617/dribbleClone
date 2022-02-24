@@ -1,4 +1,5 @@
 import 'package:dribblestack/common_widgets/glass_morphic_container.dart';
+import 'package:dribblestack/services/responsive_service.dart';
 import 'package:flutter/material.dart';
 
 class GreetingsHeader extends StatelessWidget {
@@ -7,8 +8,8 @@ class GreetingsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
+    SizeConfig().init(context);
+    return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -16,35 +17,31 @@ class GreetingsHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Good Morning',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 21,
+                  fontSize: 20.toFont,
                 ),
               ),
               SizedBox(
-                height: 2,
+                height: 2.toHeight,
               ),
-              const Text(
+              Text(
                 'Rishabh Sharma',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28,
-                ),
+                    color: Colors.white,
+                    fontSize: 27.toFont,
+                    fontWeight: FontWeight.bold),
               )
             ],
           ),
           InkWell(
               child: GlassContainer(
-            width: 50,
-            height: 50,
+            width: 47.toWidth,
+            height: 47.toWidth,
             child: Center(
-              child: Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 30,
-              ),
+              child: Icon(Icons.add, color: Colors.white, size: 23.toHeight),
             ),
           ))
         ],

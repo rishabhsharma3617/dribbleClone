@@ -1,3 +1,4 @@
+import 'package:dribblestack/services/responsive_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 
@@ -15,15 +16,17 @@ class ApplianceStatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
-        height: 95,
+        height: 60.toHeight,
         width: double.infinity,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.grey,
+          borderRadius: BorderRadius.circular(15.toWidth),
+          color: Theme.of(context).colorScheme.secondary,
         ),
         child: Padding(
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.symmetric(
+                vertical: 8.toHeight, horizontal: 12.toWidth),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,16 +36,25 @@ class ApplianceStatusCard extends StatelessWidget {
                   children: [
                     Text(
                       applianceName,
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(
+                        fontSize: 16.toFont,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 1.toHeight,
                     ),
                     Text(
                       activeStatus ? 'On' : 'Off',
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 23.toFont,
+                          fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
-                Icon(Icons.add)
+                applianceIcon
               ],
             )));
   }

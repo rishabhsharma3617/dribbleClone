@@ -1,5 +1,9 @@
 import 'package:dribblestack/screens/home/index.dart';
+import 'package:dribblestack/services/responsive_service.dart';
+import 'package:dribblestack/utils/extensions/hex.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +18,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Pulpdisplay'),
+        theme: ThemeData(
+            fontFamily: 'Pulpdisplay',
+            colorScheme: ColorScheme.light(
+              primary: HexColor.fromHex('#10101e'),
+              secondary: HexColor.fromHex('#f5f5f6'),
+              secondaryVariant: HexColor.fromHex('#87878e'),
+              primaryVariant: HexColor.fromHex('#ff9b75'),
+            )),
         home: HomeScreen());
   }
 }

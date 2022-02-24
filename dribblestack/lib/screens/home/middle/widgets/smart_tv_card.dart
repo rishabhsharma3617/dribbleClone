@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:dribblestack/common_widgets/glass_morphic_container.dart';
 import 'package:dribblestack/screens/home/index.dart';
+import 'package:dribblestack/services/responsive_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -15,12 +16,13 @@ class SmartTvCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return GlassContainer(
       disableMorphicEffect: isActive,
-      height: 165,
+      height: 118.toHeight,
       width: double.infinity,
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(20.toWidth),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -33,30 +35,40 @@ class SmartTvCard extends StatelessWidget {
                   Text(
                     'Smart Tv',
                     style: TextStyle(
-                        color: isActive ? Colors.black : Colors.white,
-                        fontSize: 20),
+                        color: isActive
+                            ? Theme.of(context).colorScheme.primary
+                            : Colors.white,
+                        fontSize: 18.toFont),
                   ),
                   Icon(Icons.arrow_forward_ios,
-                      size: 17, color: isActive ? Colors.black : Colors.white)
+                      size: 17,
+                      color: isActive
+                          ? Theme.of(context).colorScheme.primary
+                          : Colors.white)
                 ],
               ),
             ),
             SizedBox(
-              height: 3,
+              height: 3.toHeight,
             ),
             Text('Samsung UA45 4AC',
-                style:
-                    TextStyle(color: isActive ? Colors.black : Colors.white)),
+                style: TextStyle(
+                    fontSize: 12.toFont,
+                    color: isActive
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.secondary)),
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 FlutterSwitch(
                   value: isActive,
-                  height: 33,
-                  toggleSize: 30,
-                  width: 62,
-                  padding: 2,
+                  height: 20.toHeight,
+                  toggleSize: 18.5.toHeight,
+                  activeColor: Theme.of(context).colorScheme.primaryVariant,
+                  inactiveColor: Colors.white.withOpacity(0.3),
+                  width: 48.toWidth,
+                  padding: 1.2.toWidth,
                   onToggle: (newActiveStatus) => toggleActiveStatus(
                       ApplianceService.smartTvService, newActiveStatus),
                 ),

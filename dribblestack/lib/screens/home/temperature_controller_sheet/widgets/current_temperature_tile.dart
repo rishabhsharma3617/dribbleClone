@@ -1,3 +1,4 @@
+import 'package:dribblestack/services/responsive_service.dart';
 import 'package:flutter/material.dart';
 
 class CurrentTemperatureVariableTile extends StatelessWidget {
@@ -5,6 +6,7 @@ class CurrentTemperatureVariableTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -15,24 +17,34 @@ class CurrentTemperatureVariableTile extends StatelessWidget {
               'Current temp',
               style: TextStyle(
                   color: Colors.grey,
-                  fontSize: 18,
+                  fontSize: 17.toFont,
                   fontWeight: FontWeight.w600),
+            ),
+            SizedBox(
+              height: 5.toHeight,
             ),
             Row(
               children: [
-                Icon(Icons.ac_unit),
+                Icon(
+                  Icons.arrow_drop_up,
+                  size: 25.toHeight,
+                  color: Colors.grey,
+                ),
                 RichText(
                     text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
                         text: '24',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 32,
-                            color: Colors.black)),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 25.toFont,
+                          color: Theme.of(context).colorScheme.primary,
+                        )),
                     TextSpan(
                         text: '°C',
-                        style: TextStyle(color: Colors.black, fontSize: 20)),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 20)),
                   ],
                 ))
               ],
@@ -46,24 +58,34 @@ class CurrentTemperatureVariableTile extends StatelessWidget {
               'Current humidity',
               style: TextStyle(
                   color: Colors.grey,
-                  fontSize: 18,
+                  fontSize: 17.toFont,
                   fontWeight: FontWeight.w600),
+            ),
+            SizedBox(
+              height: 5.toHeight,
             ),
             Row(
               children: [
-                Icon(Icons.ac_unit),
+                Icon(
+                  Icons.arrow_drop_down,
+                  size: 25.toHeight,
+                  color: Colors.grey,
+                ),
                 RichText(
                     text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                        text: '24',
+                        text: '54',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 32,
-                            color: Colors.black)),
+                          fontSize: 25.toFont,
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).colorScheme.primary,
+                        )),
                     TextSpan(
-                        text: '°C',
-                        style: TextStyle(color: Colors.black, fontSize: 20)),
+                        text: '%',
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 20.toFont)),
                   ],
                 ))
               ],

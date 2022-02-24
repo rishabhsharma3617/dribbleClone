@@ -21,13 +21,13 @@ class GlassContainer extends StatelessWidget {
             width: width,
             height: height,
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(15)),
+                color: Colors.white, borderRadius: BorderRadius.circular(20)),
             child: child,
           )
         : GlassmorphicContainer(
             width: width,
             height: height,
-            borderRadius: 15,
+            borderRadius: 20,
             linearGradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -47,8 +47,8 @@ class GlassContainer extends StatelessWidget {
                 const Color((0xFFFFFFFF)).withOpacity(0.5),
               ],
             ),
-            border: 1.5,
-            blur: 6,
+            border: 2,
+            blur: 18,
             child: child,
           );
   }

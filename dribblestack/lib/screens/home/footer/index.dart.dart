@@ -1,12 +1,35 @@
 import 'package:dribblestack/common_widgets/glass_morphic_container.dart';
 import 'package:dribblestack/screens/home/footer/widgets/electricity_usage_card.dart';
+import 'package:dribblestack/services/responsive_service.dart';
 import 'package:flutter/material.dart';
 
 class FooterSection extends StatelessWidget {
-  const FooterSection({Key? key}) : super(key: key);
+  List<int> electricityUnitsConsumed;
+  FooterSection({Key? key, required this.electricityUnitsConsumed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    String getCurrentMonth(int monthIndex) {
+      List<String> monthNameArr = [
+        'JAN',
+        'FEB',
+        'MAR',
+        'APR',
+        'MAY',
+        'JUN',
+        'JUL',
+        'AUG',
+        'SEP',
+        'OCT',
+        'NOV',
+        'DEC'
+      ];
+      return monthNameArr[monthIndex];
+    }
+
     return Column(
       children: [
         Row(
@@ -14,19 +37,24 @@ class FooterSection extends StatelessWidget {
           children: [
             Text(
               'Statistics',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: 16.toFont),
             ),
             Text(
-              'Month',
-              style: TextStyle(color: Colors.white),
+              getCurrentMonth(DateTime.now().month - 1),
+              style: TextStyle(
+                  color: Colors.white.withOpacity(0.8), fontSize: 16.toFont),
             )
           ],
         ),
         SizedBox(
-          height: 10,
+          height: 20.toHeight,
         ),
         GlassContainer(
-            height: 200, width: double.infinity, child: ElectricityUsageCard()),
+            height: 150.toHeight,
+            width: double.infinity,
+            child: ElectricityUsageCard(
+              electricityUnitsConsumed: electricityUnitsConsumed,
+            )),
       ],
     );
   }

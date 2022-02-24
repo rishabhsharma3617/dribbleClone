@@ -1,5 +1,6 @@
 import 'package:dribblestack/common_widgets/glass_morphic_container.dart';
 import 'package:dribblestack/screens/home/index.dart';
+import 'package:dribblestack/services/responsive_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -13,12 +14,13 @@ class PlugCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return GlassContainer(
         disableMorphicEffect: isActive,
-        height: 250,
+        height: 164.toHeight,
         width: double.infinity,
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(20.toWidth),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,18 +31,22 @@ class PlugCard extends StatelessWidget {
                   Text(
                     'Plug wall',
                     style: TextStyle(
-                        color: isActive ? Colors.black : Colors.white,
-                        fontSize: 20),
+                        color: isActive
+                            ? Theme.of(context).colorScheme.primary
+                            : Colors.white,
+                        fontSize: 17.toFont),
                   ),
                   Icon(
                     Icons.arrow_forward_ios,
-                    size: 17,
-                    color: isActive ? Colors.black : Colors.white,
+                    size: 12.toHeight,
+                    color: isActive
+                        ? Theme.of(context).colorScheme.primary
+                        : Colors.white,
                   )
                 ],
               ),
               SizedBox(
-                height: 22,
+                height: 6.toHeight,
               ),
               Expanded(
                 child: ListView.separated(
@@ -54,13 +60,18 @@ class PlugCard extends StatelessWidget {
                               text: '\u2022 ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: isActive ? Colors.black : Colors.white,
+                                fontSize: 18.toFont,
+                                color: isActive
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Colors.white,
                               )),
                           TextSpan(
                               text: 'PlayStation 5',
                               style: TextStyle(
-                                color: isActive ? Colors.black : Colors.white,
+                                fontSize: 12.toFont,
+                                color: isActive
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Colors.white,
                               )),
                         ],
                       ),
@@ -68,23 +79,25 @@ class PlugCard extends StatelessWidget {
                   },
                   separatorBuilder: (context, index) {
                     return SizedBox(
-                      height: 12,
+                      height: 4.toHeight,
                     );
                   },
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 30.toHeight,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   FlutterSwitch(
                     value: isActive,
-                    height: 33,
-                    toggleSize: 30,
-                    width: 62,
-                    padding: 2,
+                    inactiveColor: Colors.white.withOpacity(0.3),
+                    height: 20.toHeight,
+                    toggleSize: 18.5.toHeight,
+                    width: 48.toWidth,
+                    activeColor: Theme.of(context).colorScheme.primaryVariant,
+                    padding: 1.2.toWidth,
                     onToggle: (newActiveStatus) => toggleActiveStatus(
                         ApplianceService.plugWallService, newActiveStatus),
                   ),

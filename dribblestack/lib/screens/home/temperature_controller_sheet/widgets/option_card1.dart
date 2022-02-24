@@ -1,3 +1,4 @@
+import 'package:dribblestack/services/responsive_service.dart';
 import 'package:flutter/material.dart';
 
 class TemperatureStatusCard extends StatelessWidget {
@@ -15,15 +16,17 @@ class TemperatureStatusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
-        height: 105,
+        height: 81.toHeight,
         width: double.infinity,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.grey,
+          borderRadius: BorderRadius.circular(15.toHeight),
+          color: Theme.of(context).colorScheme.secondary,
         ),
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.symmetric(
+              vertical: 15.toHeight, horizontal: 12.toWidth),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -35,14 +38,16 @@ class TemperatureStatusCard extends StatelessWidget {
                       children: <TextSpan>[
                         TextSpan(
                             text: '$labelText ',
-                            style:
-                                TextStyle(fontSize: 16, color: Colors.black)),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16.toFont,
+                                color: Theme.of(context).colorScheme.primary)),
                         showColoredDot
                             ? TextSpan(
                                 text: '\u2022',
                                 style: TextStyle(
                                     color: dotColor,
-                                    fontSize: 20,
+                                    fontSize: 17.toFont,
                                     fontWeight: FontWeight.bold))
                             : TextSpan(text: ''),
                       ],
@@ -59,14 +64,15 @@ class TemperatureStatusCard extends StatelessWidget {
                         TextSpan(
                             text: '$temperature',
                             style: TextStyle(
-                                fontSize: 35,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 28.toFont,
+                              color: Theme.of(context).colorScheme.primary,
+                            )),
                         TextSpan(
-                            text: '°C',
+                            text: '°c',
                             style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 22.toFont,
                             )),
                       ],
                     ),
